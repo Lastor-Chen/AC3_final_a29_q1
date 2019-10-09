@@ -17,6 +17,15 @@ function getRequestLog(req, res, next) {
   next()
 }
 
+function ignoreFavicon(req, res, next) {
+  if (req.path.includes('favicon.ico')) return res.status(204).json({ nope: true })
+  next();
+}
+
+// ===============================
+
+app.use(ignoreFavicon)
+
 // 列出全部 Todo
 app.get('/', getRequestLog, (req, res) => {
   res.send('列出全部 Todo')
