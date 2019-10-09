@@ -2,51 +2,34 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-// middleware
-function getRequestLog(req, res, next) {
-  const path = req.path
-  const method = req.method
-
-  const date = new Date()
-  const yyyy_mm_dd = date.toISOString().slice(0, 10)
-  const localTime = date.toLocaleTimeString().split(' ')[0]
-
-  // 2019-5-17 18:51:12 | GET from /
-  console.log(`${yyyy_mm_dd} ${localTime} | ${method} from ${path}`)
-
-  next()
-}
-
-function ignoreFavicon(req, res, next) {
-  if (req.path.includes('favicon.ico')) return res.status(204).json({ nope: true })
-  next();
-}
+const { ignoreFavicon, getRequestLog } = require('./lib/middleware.js')
 
 // ===============================
 
 app.use(ignoreFavicon)
+app.use(getRequestLog)
 
 // 列出全部 Todo
-app.get('/', getRequestLog, (req, res) => {
+app.get('/', (req, res) => {
   res.send('列出全部 Todo')
 })
 
 // 新增一筆 Todo 頁面
-app.get('/new', getRequestLog, (req, res) => {
+app.get('/new', (req, res) => {
   res.send('新增 Todo 頁面')
 })
 
 // 顯示一筆 Todo 的詳細內容
-app.get('/:id', getRequestLog, (req, res) => {
+app.get('/:id', (req, res) => {
   res.send('顯示一筆 Todo')
 })
 
 // 新增一筆  Todo
-app.post('/', getRequestLog, (req, res) => {
+app.post('/', (req, res) => {
   res.send('新增一筆  Todo')
 })
 
-app.delete('/:id/delete', getRequestLog, (req, res) => {
+app.delete('/:id/delete', (req, res) => {
   res.send('刪除 Todo')
 })
 
