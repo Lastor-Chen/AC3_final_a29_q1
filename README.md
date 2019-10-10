@@ -1,6 +1,15 @@
-# Q1 實作 Middleware
-Alpha Camp 學期三期末考 A29-Q1。 <br>
-檢視是否理解 Express middleware。製作一個 middleware 來檢查每一筆 request，於 log 中顯示 request 相關內容。 
+# Q2 實作 Middleware
+Alpha Camp 學期三期末考 A29-Q2。 <br>
+
+檢視是否理解 Express middleware。製作一個 middleware 來檢查每一筆 request，於 log 中顯示 request 相關內容。 <br>
+
+延伸 Q1 內容，修改 middleware 使其回傳 req -> res 花費時間。
+
+
+| 單元 | branch |
+| -------- | -------- |
+| Q1     | master     |
+| Q2     | q2     |
 
 ## Usage
 安裝方法，請參考下方 [Dependency packages](#Dependency-packages) 與 [Installation](#Installation) 項目。 <br>
@@ -14,6 +23,10 @@ Alpha Camp 學期三期末考 A29-Q1。 <br>
     * 一併安裝 nodemon 於專案中
     ```
     $ npm install
+    ```
+1. 切換 branch q2
+    ```
+    $ git checkout q2
     ```
 
 1. 啟動 Node.js Server
